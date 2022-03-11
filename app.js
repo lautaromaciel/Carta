@@ -2,14 +2,11 @@
 /* Carta */
 
 const carta = document.getElementById("cartaC");
-
 const botonesCarta = document.querySelectorAll(".carta__titulo");
-// const botonCarta1 = document.getElementById("pizzas");
-// const botonCarta2 = document.getElementById("hamburguesas");
-// const botonCarta3 = document.getElementById("desayunos");
-
 const botonCartaS = document.getElementById("cartaSiguiente");
 const botonCartaA = document.getElementById("cartaAnterior");
+
+
 
 const pagina1A =`<div class="carta carta1">
 				<div class="carta__item">
@@ -491,17 +488,170 @@ const pagina3C = `<div class="carta carta1">
 </div>
 </div>`;
 
+
+
+const pagina3D = `<div class="carta carta1">
+<div class="carta__item">
+	<h4 class="carta__subtitulo">desayuno N°17</h4>
+	<p class="carta__texto">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia, dolores 
+	Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fuga, eaque.</p>
+	<span class="carta__span">$100</span>
+</div>
+<div class="carta__item">
+	<h4 class="carta__subtitulo">desayuno N°18</h4>
+	<p class="carta__texto">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia, dolores 
+	Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fuga, eaque.</p>
+	<span class="carta__span">$100</span>
+</div>
+<div class="carta__item">
+	<h4 class="carta__subtitulo">desayuno N°19</h4>
+	<p class="carta__texto">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia, dolores 
+	Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fuga, eaque.</p>
+	<span class="carta__span">$100</span>
+</div>
+<div class="carta__item">
+	<h4 class="carta__subtitulo">desayuno N°20</h4>
+	<p class="carta__texto">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia, dolores 
+	Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fuga, eaque.</p>
+	<span class="carta__span">$100</span>
+</div>
+</div>
+<div class="carta carta2">
+<div class="carta__item">
+	<h4 class="carta__subtitulo">desayuno N°21</h4>
+	<p class="carta__texto">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia, dolores 
+	Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fuga, eaque.</p>
+	<span class="carta__span">$100</span>
+</div>
+<div class="carta__item">
+	<h4 class="carta__subtitulo">desayuno N°22</h4>
+	<p class="carta__texto">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia, dolores 
+	Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fuga, eaque.</p>
+	<span class="carta__span">$100</span>
+</div>
+<div class="carta__item">
+	<h4 class="carta__subtitulo">desayuno N°23</h4>
+	<p class="carta__texto">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia, dolores 
+	Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fuga, eaque.</p>
+	<span class="carta__span">$100</span>
+</div>
+<div class="carta__item">
+	<h4 class="carta__subtitulo">desayuno N°24</h4>
+	<p class="carta__texto">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia, dolores 
+	Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fuga, eaque.</p>
+	<span class="carta__span">$100</span>
+</div>
+</div>`;
+
+
+const pagina4A = `<div class="carta carta1">
+<div class="carta__item">
+	<h4 class="carta__subtitulo">Postres N°1</h4>
+	<p class="carta__texto">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia, dolores 
+	Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fuga, eaque.</p>
+	<span class="carta__span">$100</span>
+</div>
+<div class="carta__item">
+	<h4 class="carta__subtitulo">Postres N°2</h4>
+	<p class="carta__texto">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia, dolores 
+	Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fuga, eaque.</p>
+	<span class="carta__span">$100</span>
+</div>
+<div class="carta__item">
+	<h4 class="carta__subtitulo">Postres N°3</h4>
+	<p class="carta__texto">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia, dolores 
+	Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fuga, eaque.</p>
+	<span class="carta__span">$100</span>
+</div>
+<div class="carta__item">
+	<h4 class="carta__subtitulo">Postres N°4</h4>
+	<p class="carta__texto">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia, dolores 
+	Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fuga, eaque.</p>
+	<span class="carta__span">$100</span>
+</div>
+</div>
+<div class="carta carta2">
+<div class="carta__item">
+	<h4 class="carta__subtitulo">Postres N°5</h4>
+	<p class="carta__texto">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia, dolores 
+	Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fuga, eaque.</p>
+	<span class="carta__span">$100</span>
+</div>
+<div class="carta__item">
+	<h4 class="carta__subtitulo">Postres N°6</h4>
+	<p class="carta__texto">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia, dolores 
+	Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fuga, eaque.</p>
+	<span class="carta__span">$100</span>
+</div>
+<div class="carta__item">
+	<h4 class="carta__subtitulo">Postres N°7</h4>
+	<p class="carta__texto">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia, dolores 
+	Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fuga, eaque.</p>
+	<span class="carta__span">$100</span>
+</div>
+<div class="carta__item">
+	<h4 class="carta__subtitulo">Postres N°8</h4>
+	<p class="carta__texto">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia, dolores 
+	Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fuga, eaque.</p>
+	<span class="carta__span">$100</span>
+</div>
+</div>`;
+
+const pagina4B = `<div class="carta carta1">
+<div class="carta__item">
+	<h4 class="carta__subtitulo">Postres N°9</h4>
+	<p class="carta__texto">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia, dolores 
+	Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fuga, eaque.</p>
+	<span class="carta__span">$100</span>
+</div>
+<div class="carta__item">
+	<h4 class="carta__subtitulo">Postres N°10</h4>
+	<p class="carta__texto">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia, dolores 
+	Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fuga, eaque.</p>
+	<span class="carta__span">$100</span>
+</div>
+<div class="carta__item">
+	<h4 class="carta__subtitulo">Postres N°11</h4>
+	<p class="carta__texto">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia, dolores 
+	Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fuga, eaque.</p>
+	<span class="carta__span">$100</span>
+</div>
+<div class="carta__item">
+	<h4 class="carta__subtitulo">Postres N°12</h4>
+	<p class="carta__texto">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia, dolores 
+	Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fuga, eaque.</p>
+	<span class="carta__span">$100</span>
+</div>
+</div>
+<div class="carta carta2">
+<div class="carta__item">
+	<h4 class="carta__subtitulo">Postres N°13</h4>
+	<p class="carta__texto">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia, dolores 
+	Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fuga, eaque.</p>
+	<span class="carta__span">$100</span>
+</div>
+<div class="carta__item">
+	<h4 class="carta__subtitulo">Postres N°14</h4>
+	<p class="carta__texto">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia, dolores 
+	Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fuga, eaque.</p>
+	<span class="carta__span">$100</span>
+</div>
+</div>`;
+
+/* Final: Añadí una página más y pude comprobar que todo funciona corretamente,
+probé hacer una función de creación de páginas pero al menos sin usar POO me resultó más eficiente
+remplazar el código Html;
+Lo siguiente seria usar archivos txt externos en lugar de escribir el código Html en js*/
+
 const carta1 = [pagina1A,pagina1B,pagina1C];
 const carta2 = [pagina2A,pagina2B,pagina2C];
-const carta3 = [pagina3A,pagina3B,pagina3C];
+const carta3 = [pagina3A,pagina3B,pagina3C,pagina3D];
+const carta4 = [pagina4A,pagina4B];
 
-const contador = [0,0,0];
-const cartas = [carta1,carta2,carta3];
-/*Paso5: Agregué el array clases para poder implementar los bucles */
-const clases = ["pizzas","hamburguesas","desayunos"];
+const contador = [0,0,0,0];
+const cartas = [carta1,carta2,carta3,carta4];
+const clases = ["pizzas","hamburguesas","desayunos","postres"];
 
-
-/*Paso 5: Optimicé la funcion mostrarCarta con un bucle for */
 
 function mostrarCarta(){
 	for(i=0;i <= clases.length-1; i++){
@@ -510,9 +660,6 @@ function mostrarCarta(){
 		}
 	}
 };
-
-
-
 
 function cambiarCarta(e,clase){
 	carta.setAttribute("class",`cartaC ${clase}`);
@@ -524,21 +671,13 @@ function cambiarCarta(e,clase){
 } 
 
 
-/* Paso 5: Creé un bucle for para asignar el evento click correspondiente a cada botón
-al principio tuve problemas con este bucle porque la variable i del for quedaba de forma permanente en el valor 3 cada
-vez que se llamaba a la función mediante el evento.
-Por eso tuve que crear la variable n en la que copie el valor del i actual, la variable n es independiente a cada funcion;
-*/
-
 for(i=0;i <= botonesCarta.length-1;i++){
-
 	let n = i;
 	botonesCarta[n].addEventListener("click",(e)=>{
-		console.log(n);
 		cambiarCarta(e,clases[n]);
 	});
-
 }
+
 
 
 const ocultar = elemento => elemento.style.opacity = "0";
@@ -654,32 +793,20 @@ function cambiarPagina(contadorI,cartaActual,boleano){
 	}	
 }
 
-
-/*Paso 5: Optimicé la funcion siguientePagina con un bucle for */
-
-
 function siguientePagina(){
-
 	for(i=0;i <= clases.length-1; i++){
 		if(carta.classList.contains(clases[i])){
 			cambiarPagina(i,cartas[i],true);
 		}
 	}
-
 	inhabilitarBotones(botonCartaA,botonCartaS);
 }
 
 function anteriorPagina(){
-
-	if(carta.classList.contains("pizzas")){
-		cambiarPagina(0,cartas[0],false);
-	}
-	else if(carta.classList.contains("hamburguesas")){
-		cambiarPagina(1,cartas[1],false);
-
-	}
-	else if(carta.classList.contains("desayunos")){
-		cambiarPagina(2,cartas[2],false);
+	for(i=0;i <= clases.length-1; i++){
+		if(carta.classList.contains(clases[i])){
+			cambiarPagina(i,cartas[i],false);
+		}
 	}
 	inhabilitarBotones(botonCartaA,botonCartaS);
 }
