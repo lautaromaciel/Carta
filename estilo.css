@@ -1,0 +1,135 @@
+@import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&family=Smooch+Sans:wght@100;200;300;400;500;600;700;800;900&display=swap');
+html{
+	font-size: 20px;
+	font-family: 'Smooch Sans', sans-serif;
+}
+
+:root{
+	--color1: #ccc;
+	--color2: #113;
+	--color3: #f92;
+	--gradiente1:linear-gradient(to right, #ff9966, #ff5e61);
+	--gradiente1B:linear-gradient(to right, #ff9966aa, #ff5e61aa);
+	--gradiente2:linear-gradient(to right, #76b852, #8dc26f);
+	--gradiente2B:linear-gradient(to right, #76b85288, #8dc26f88);
+}
+
+@media (max-width: 800px){html{font-size: 16px;}}
+@media (max-width:400px){html{font-size:12px;}}
+@media (min-width:1600px){html{font-size: 25px;}}
+@media (min-width:2000px){html{font-size: 35px;}}
+
+*{
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
+
+body{
+	background: #ddb;
+	/* background-image: url("../imagenes/hamburguesas/01.jpg"); */
+	background-size: 100%;
+}
+
+
+/* CARTA */
+
+.cartas{
+	width: 100%;
+	background-color: #ddb;
+}
+
+	.carta__titulos{
+		display: flex;
+		margin: auto;
+		padding: 0.3rem;
+		padding-bottom: 0;
+		font-size: 1.3rem;
+		justify-content: center;
+	}
+
+		.carta__titulo{
+			background-color: #dd9;
+			color: #000;
+			padding: 0.5rem;
+			margin: 0.2rem;
+			border: 1px solid #000;
+			border-bottom: 3px solid #000;
+			border-radius: 0.2rem;
+		}
+
+		.carta__titulo:hover{
+			background-color: #f92;
+			cursor: pointer;
+		}
+
+	.cartaC{
+		font-family: 'Amatic SC', cursive;
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		margin: auto;
+	}
+		.carta__item{
+			background-color: #dd9;
+			padding:0.5rem;
+			display: grid;
+			grid-template-columns: 8fr 2fr;
+			margin: 1rem;
+			color: #000;
+			border-radius: 0.8rem;
+			box-shadow: 1px 1px 2px #000;
+		}
+
+			.carta__subtitulo{
+				font-size: 1.4rem;
+
+			}
+			.carta__texto{
+				font-size: 1.2rem;
+				grid-column: 1/2;
+			}
+			.carta__span{
+				grid-column: 2/3;
+				text-align: center;
+				font-weight: 700;
+				font-size: 1.4rem;
+			}
+
+	.carta__botonesC{
+		grid-column: 1/3;
+		text-align: center;
+		padding: 1rem;
+		background: transparent ;
+	}
+
+		.carta__btn{
+			border: none;
+			background: #dd9;
+			color: #000;
+			box-shadow: 0px 0px 3px #000;
+		}
+
+		.carta__btn:hover{
+			background: #f92;
+		}
+
+			.carta__btn i{
+				font-size: 1.5rem;
+				padding: 0.5rem 1rem;
+			}
+
+
+.activo{
+	background-color: #f92;
+}
+
+@media (max-width:800px){
+
+	.cartaC{
+		display: flex;
+		flex-direction: column;
+
+	}
+
+}
