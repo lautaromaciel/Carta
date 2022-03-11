@@ -495,20 +495,21 @@ const carta3C = `<div class="carta carta1">
 const cartas1 = [carta1A,carta1B,carta1C];
 const cartas2 = [carta2A,carta2B,carta2C];
 const cartas3 = [carta3A,carta3B,carta3C];
+const cartas = [cartas1,cartas2,cartas3];
 
-let contadorP = 0;
-let contadorH = 0;
-let contadorD = 0;
+/* Paso 3: ahora los contadores pasaron a formar parte del array contador */
+
+let contador = [0,0,0];
 
 function cambiarCarta(){
 	if(carta.classList.contains("pizzas")){
-		carta.innerHTML = cartas1[contadorP];
+		carta.innerHTML = cartas1[contador[0]];
 	}
 	else if(carta.classList.contains("hamburguesas")){
-		carta.innerHTML = cartas2[contadorH];
+		carta.innerHTML = cartas2[contador[1]];
 	}
 	else if(carta.classList.contains("desayunos")){
-		carta.innerHTML = cartas3[contadorD];
+		carta.innerHTML = cartas3[contador[2]];
 	}
 };
 
@@ -534,7 +535,6 @@ botonCarta2.addEventListener("click",(e)=>{
 botonCarta3.addEventListener("click",(e)=>{
 	carta.setAttribute("class","cartaC desayunos");
 	cambiarCarta();
-	
 	for(boton of botonesCarta){
 		boton.classList.remove("activo");
 	};
@@ -553,8 +553,7 @@ const mover = (elemento,movimiento) =>{
 	elemento.style.transition = "transform 1s";
 }
 
-/* paso 2: cambiando los parametros y modificando transicionPagina y
-transicionPaginaAnt eliminé las funciones transicionPaginaF y transicionPaginaAntF */
+
 
 function transicionPagina(pagina,contador){
 
@@ -631,59 +630,61 @@ function transicionPaginaAnt(pagina,contador){
 	}
 }
 
-/* paso 2: Las funciones siguienteCarta y AnteriorCarta tambien se redujeron*/
+
+/* paso 3: Creé la funcion inhabilitarBotones para no tener que repetir el mismo codigo en la funcion siguienteCarta
+y anteriorCarta */
+
+function inhabilitarBotones(btnAtras,btnAdelante){
+	btnAdelante.removeEventListener("click",siguienteCarta);
+	btnAtras.removeEventListener("click",anteriorCarta);
+	setTimeout(()=>{
+		btnAdelante.addEventListener("click",siguienteCarta);
+		btnAtras.addEventListener("click",anteriorCarta);
+	},1500);	
+}
+
+/* paso 3 : Creé cambiarPagina, pero solo pude optimizar unas pocas lineas de codigo */
+
+function cambiarPagina(contadorI,cartaActual,boleano){
+	if(boleano){
+		contador[contadorI]++;
+		if(contador[contadorI] > cartaActual.length-1) contador[contadorI] = 0;
+		transicionPagina(cartaActual,contador[contadorI]);
+	} else{
+		contador[contadorI]--;
+		if (contador[contadorI] < 0 ) contador[contadorI] = cartaActual.length-1;
+		transicionPaginaAnt(cartaActual,contador[contadorI]);
+	}	
+}
+
 
 function siguienteCarta(){
-
+	
 	if(carta.classList.contains("pizzas")){
-		contadorP++;
-		if (contadorP > cartas1.length-1) contadorP = 0;
-		transicionPagina(cartas1,contadorP);
+		cambiarPagina(0,cartas1,true);
 	}
 	else if(carta.classList.contains("hamburguesas")){
-		contadorH++;
-		if (contadorH > cartas2.length-1) contadorH = 0;
-		transicionPagina(cartas2,contadorH);
+		cambiarPagina(1,cartas2,true);
 	}
 	else if(carta.classList.contains("desayunos")){
-		contadorD++;
-		if (contadorD > cartas3.length-1) contadorD = 0;
-		transicionPagina(cartas3,contadorD);
+		cambiarPagina(2,cartas3,true);
 	}
-	botonCartaS.removeEventListener("click",siguienteCarta);
-	botonCartaA.removeEventListener("click",anteriorCarta);
-	setTimeout(()=>{
-		botonCartaS.addEventListener("click",siguienteCarta);
-		botonCartaA.addEventListener("click",anteriorCarta);
-	},1500);
+	inhabilitarBotones(botonCartaA,botonCartaS);
 }
 
 function anteriorCarta(){
-	
+
 	if(carta.classList.contains("pizzas")){
-		contadorP--;
-		if (contadorP < 0 ) contadorP = cartas1.length-1;
-		transicionPaginaAnt(cartas1,contadorP);
+		cambiarPagina(0,cartas1,false);
 	}
 	else if(carta.classList.contains("hamburguesas")){
-		contadorH--;
-		if (contadorH < 0 ) contadorH = cartas2.length-1;
-		transicionPaginaAnt(cartas2,contadorH);
+		cambiarPagina(0,cartas1,false);
 
 	}
 	else if(carta.classList.contains("desayunos")){
-		contadorD--;
-		if (contadorD < 0 ) contadorD = cartas3.length-1;
-		transicionPaginaAnt(cartas3,contadorD);
+		cambiarPagina(0,cartas1,false);
 	}
-
-	botonCartaA.removeEventListener("click",anteriorCarta);
-	botonCartaS.removeEventListener("click",siguienteCarta);
-	setTimeout(()=>{
-		botonCartaA.addEventListener("click",anteriorCarta);
-		botonCartaS.addEventListener("click",siguienteCarta);
-	},1500);
-	
+	inhabilitarBotones(botonCartaA,botonCartaS);
 }
 
 botonCartaS.addEventListener("click", siguienteCarta);
