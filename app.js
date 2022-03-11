@@ -1,5 +1,4 @@
 
-
 /* Carta */
 
 const carta = document.getElementById("cartaC");
@@ -12,7 +11,7 @@ const botonCarta3 = document.getElementById("desayunos");
 const botonCartaS = document.getElementById("cartaSiguiente");
 const botonCartaA = document.getElementById("cartaAnterior");
 
-const carta1A =`<div class="carta carta1">
+const pagina1A =`<div class="carta carta1">
 				<div class="carta__item">
 					<h4 class="carta__subtitulo">Pizza N°1</h4>
 					<p class="carta__texto">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia, dolores 
@@ -65,7 +64,7 @@ const carta1A =`<div class="carta carta1">
 				</div>
 			</div>`;
 
-const carta1B = `
+const pagina1B = `
 	<div class="carta carta1" >
 		<div class="carta__item">
 			<h4 class="carta__subtitulo">Pizza N°5</h4>
@@ -119,7 +118,7 @@ const carta1B = `
 		</div>
 	</div>`;
 
-const carta1C = `<div class="carta carta1">
+const pagina1C = `<div class="carta carta1">
 	<div class="carta__item">
 		<h4 class="carta__subtitulo">Pizza N°9</h4>
 		<p class="carta__texto">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia, dolores 
@@ -173,7 +172,7 @@ const carta1C = `<div class="carta carta1">
 </div>`;
 
 
-const carta2A =`<div class="carta carta1" >
+const pagina2A =`<div class="carta carta1" >
 				<div class="carta__item">
 					<h4 class="carta__subtitulo">hamburguesa N°1</h4>
 					<p class="carta__texto">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia, dolores 
@@ -226,7 +225,7 @@ const carta2A =`<div class="carta carta1" >
 				</div>
 			</div>`;
 
-const carta2B =`<div class="carta carta1" >
+const pagina2B =`<div class="carta carta1" >
 		<div class="carta__item">
 			<h4 class="carta__subtitulo">hamburguesa N°5</h4>
 			<p class="carta__texto">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia, dolores 
@@ -279,7 +278,7 @@ const carta2B =`<div class="carta carta1" >
 		</div>
 	</div>`;
 
-const carta2C = `<div class="carta carta1">
+const pagina2C = `<div class="carta carta1">
 <div class="carta__item">
 	<h4 class="carta__subtitulo">hamburguesa N°9</h4>
 	<p class="carta__texto">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia, dolores 
@@ -333,7 +332,7 @@ const carta2C = `<div class="carta carta1">
 </div>`;
 
 
-const carta3A = `<div class="carta carta1">
+const pagina3A = `<div class="carta carta1">
 				<div class="carta__item">
 					<h4 class="carta__subtitulo">desayuno N°1</h4>
 					<p class="carta__texto">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia, dolores 
@@ -386,7 +385,7 @@ const carta3A = `<div class="carta carta1">
 				</div>
 			</div>`;
 
-const carta3B = `<div class="carta carta1" >
+const pagina3B = `<div class="carta carta1" >
 		<div class="carta__item">
 			<h4 class="carta__subtitulo">desayuno N°5</h4>
 			<p class="carta__texto">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia, dolores 
@@ -439,7 +438,7 @@ const carta3B = `<div class="carta carta1" >
 		</div>
 	</div>`;
 
-const carta3C = `<div class="carta carta1">
+const pagina3C = `<div class="carta carta1">
 <div class="carta__item">
 	<h4 class="carta__subtitulo">desayuno N°9</h4>
 	<p class="carta__texto">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia, dolores 
@@ -492,53 +491,50 @@ const carta3C = `<div class="carta carta1">
 </div>
 </div>`;
 
-const cartas1 = [carta1A,carta1B,carta1C];
-const cartas2 = [carta2A,carta2B,carta2C];
-const cartas3 = [carta3A,carta3B,carta3C];
-const cartas = [cartas1,cartas2,cartas3];
-
-/* Paso 3: ahora los contadores pasaron a formar parte del array contador */
+const carta1 = [pagina1A,pagina1B,pagina1C];
+const carta2 = [pagina2A,pagina2B,pagina2C];
+const carta3 = [pagina3A,pagina3B,pagina3C];
 
 let contador = [0,0,0];
+const cartas = [carta1,carta2,carta3];
 
-function cambiarCarta(){
+
+
+function mostrarCarta(){
 	if(carta.classList.contains("pizzas")){
-		carta.innerHTML = cartas1[contador[0]];
+		carta.innerHTML = cartas[0][contador[0]];
 	}
 	else if(carta.classList.contains("hamburguesas")){
-		carta.innerHTML = cartas2[contador[1]];
+		carta.innerHTML = cartas[1][contador[1]];
 	}
 	else if(carta.classList.contains("desayunos")){
-		carta.innerHTML = cartas3[contador[2]];
+		carta.innerHTML = cartas[2][contador[2]];
 	}
 };
 
+/* Paso 4: Agregué la función CambiarCarta porque se repetiá en cada boton */
+
+function cambiarCarta(e,clase){
+	carta.setAttribute("class",`cartaC ${clase}`);
+		mostrarCarta();
+		for(boton of botonesCarta){
+			boton.classList.remove("activo");
+		}
+		e.target.classList.toggle("activo");
+} 
+
+
+
 botonCarta1.addEventListener("click",(e)=>{;
-	carta.setAttribute("class","cartaC pizzas");
-	cambiarCarta();
-	for(boton of botonesCarta){
-		boton.classList.remove("activo");
-	}
-	e.target.classList.toggle("activo");
+	cambiarCarta(e,"pizzas");
 });
 
 botonCarta2.addEventListener("click",(e)=>{
-	carta.setAttribute("class","cartaC hamburguesas");
-	cambiarCarta();
-	
-	for(boton of botonesCarta){
-		boton.classList.remove("activo");
-	};
-	e.target.classList.toggle("activo");
+	cambiarCarta(e,"hamburguesas");
 });
 
 botonCarta3.addEventListener("click",(e)=>{
-	carta.setAttribute("class","cartaC desayunos");
-	cambiarCarta();
-	for(boton of botonesCarta){
-		boton.classList.remove("activo");
-	};
-	e.target.classList.toggle("activo");
+	cambiarCarta(e,"desayunos");
 });
 
 
@@ -631,19 +627,18 @@ function transicionPaginaAnt(pagina,contador){
 }
 
 
-/* paso 3: Creé la funcion inhabilitarBotones para no tener que repetir el mismo codigo en la funcion siguienteCarta
-y anteriorCarta */
+
 
 function inhabilitarBotones(btnAtras,btnAdelante){
-	btnAdelante.removeEventListener("click",siguienteCarta);
-	btnAtras.removeEventListener("click",anteriorCarta);
+	btnAdelante.removeEventListener("click",siguientePagina);
+	btnAtras.removeEventListener("click",anteriorPagina);
 	setTimeout(()=>{
-		btnAdelante.addEventListener("click",siguienteCarta);
-		btnAtras.addEventListener("click",anteriorCarta);
+		btnAdelante.addEventListener("click",siguientePagina);
+		btnAtras.addEventListener("click",anteriorPagina);
 	},1500);	
 }
 
-/* paso 3 : Creé cambiarPagina, pero solo pude optimizar unas pocas lineas de codigo */
+
 
 function cambiarPagina(contadorI,cartaActual,boleano){
 	if(boleano){
@@ -658,37 +653,37 @@ function cambiarPagina(contadorI,cartaActual,boleano){
 }
 
 
-function siguienteCarta(){
+function siguientePagina(){
 	
 	if(carta.classList.contains("pizzas")){
-		cambiarPagina(0,cartas1,true);
+		cambiarPagina(0,cartas[0],true);
 	}
 	else if(carta.classList.contains("hamburguesas")){
-		cambiarPagina(1,cartas2,true);
+		cambiarPagina(1,cartas[1],true);
 	}
 	else if(carta.classList.contains("desayunos")){
-		cambiarPagina(2,cartas3,true);
+		cambiarPagina(2,cartas[2],true);
 	}
 	inhabilitarBotones(botonCartaA,botonCartaS);
 }
 
-function anteriorCarta(){
+function anteriorPagina(){
 
 	if(carta.classList.contains("pizzas")){
-		cambiarPagina(0,cartas1,false);
+		cambiarPagina(0,cartas[0],false);
 	}
 	else if(carta.classList.contains("hamburguesas")){
-		cambiarPagina(0,cartas1,false);
+		cambiarPagina(1,cartas[1],false);
 
 	}
 	else if(carta.classList.contains("desayunos")){
-		cambiarPagina(0,cartas1,false);
+		cambiarPagina(2,cartas[2],false);
 	}
 	inhabilitarBotones(botonCartaA,botonCartaS);
 }
 
-botonCartaS.addEventListener("click", siguienteCarta);
-botonCartaA.addEventListener("click", anteriorCarta);
+botonCartaS.addEventListener("click", siguientePagina);
+botonCartaA.addEventListener("click", anteriorPagina);
 
 
 
