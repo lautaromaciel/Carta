@@ -4,9 +4,9 @@
 const carta = document.getElementById("cartaC");
 
 const botonesCarta = document.querySelectorAll(".carta__titulo");
-const botonCarta1 = document.getElementById("pizzas");
-const botonCarta2 = document.getElementById("hamburguesas");
-const botonCarta3 = document.getElementById("desayunos");
+// const botonCarta1 = document.getElementById("pizzas");
+// const botonCarta2 = document.getElementById("hamburguesas");
+// const botonCarta3 = document.getElementById("desayunos");
 
 const botonCartaS = document.getElementById("cartaSiguiente");
 const botonCartaA = document.getElementById("cartaAnterior");
@@ -495,24 +495,24 @@ const carta1 = [pagina1A,pagina1B,pagina1C];
 const carta2 = [pagina2A,pagina2B,pagina2C];
 const carta3 = [pagina3A,pagina3B,pagina3C];
 
-let contador = [0,0,0];
+const contador = [0,0,0];
 const cartas = [carta1,carta2,carta3];
+/*Paso5: Agregué el array clases para poder implementar los bucles */
+const clases = ["pizzas","hamburguesas","desayunos"];
 
 
+/*Paso 5: Optimicé la funcion mostrarCarta con un bucle for */
 
 function mostrarCarta(){
-	if(carta.classList.contains("pizzas")){
-		carta.innerHTML = cartas[0][contador[0]];
-	}
-	else if(carta.classList.contains("hamburguesas")){
-		carta.innerHTML = cartas[1][contador[1]];
-	}
-	else if(carta.classList.contains("desayunos")){
-		carta.innerHTML = cartas[2][contador[2]];
+	for(i=0;i <= clases.length-1; i++){
+		if(carta.classList.contains(clases[i])){
+			carta.innerHTML = cartas[i][contador[i]];
+		}
 	}
 };
 
-/* Paso 4: Agregué la función CambiarCarta porque se repetiá en cada boton */
+
+
 
 function cambiarCarta(e,clase){
 	carta.setAttribute("class",`cartaC ${clase}`);
@@ -520,23 +520,25 @@ function cambiarCarta(e,clase){
 		for(boton of botonesCarta){
 			boton.classList.remove("activo");
 		}
-		e.target.classList.toggle("activo");
+		e.currentTarget.classList.toggle("activo");
 } 
 
 
+/* Paso 5: Creé un bucle for para asignar el evento click correspondiente a cada botón
+al principio tuve problemas con este bucle porque la variable i del for quedaba de forma permanente en el valor 3 cada
+vez que se llamaba a la función mediante el evento.
+Por eso tuve que crear la variable n en la que copie el valor del i actual, la variable n es independiente a cada funcion;
+*/
 
-botonCarta1.addEventListener("click",(e)=>{;
-	cambiarCarta(e,"pizzas");
-});
+for(i=0;i <= botonesCarta.length-1;i++){
 
-botonCarta2.addEventListener("click",(e)=>{
-	cambiarCarta(e,"hamburguesas");
-});
+	let n = i;
+	botonesCarta[n].addEventListener("click",(e)=>{
+		console.log(n);
+		cambiarCarta(e,clases[n]);
+	});
 
-botonCarta3.addEventListener("click",(e)=>{
-	cambiarCarta(e,"desayunos");
-});
-
+}
 
 
 const ocultar = elemento => elemento.style.opacity = "0";
@@ -653,17 +655,17 @@ function cambiarPagina(contadorI,cartaActual,boleano){
 }
 
 
+/*Paso 5: Optimicé la funcion siguientePagina con un bucle for */
+
+
 function siguientePagina(){
-	
-	if(carta.classList.contains("pizzas")){
-		cambiarPagina(0,cartas[0],true);
+
+	for(i=0;i <= clases.length-1; i++){
+		if(carta.classList.contains(clases[i])){
+			cambiarPagina(i,cartas[i],true);
+		}
 	}
-	else if(carta.classList.contains("hamburguesas")){
-		cambiarPagina(1,cartas[1],true);
-	}
-	else if(carta.classList.contains("desayunos")){
-		cambiarPagina(2,cartas[2],true);
-	}
+
 	inhabilitarBotones(botonCartaA,botonCartaS);
 }
 
