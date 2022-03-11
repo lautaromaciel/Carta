@@ -541,7 +541,7 @@ botonCarta3.addEventListener("click",(e)=>{
 	e.target.classList.toggle("activo");
 });
 
-/* paso1 funciones creadas para reducir las transiciones */
+
 
 const ocultar = elemento => elemento.style.opacity = "0";
 const mostrar = elemento =>{
@@ -553,111 +553,102 @@ const mover = (elemento,movimiento) =>{
 	elemento.style.transition = "transform 1s";
 }
 
+/* paso 2: cambiando los parametros y modificando transicionPagina y
+transicionPaginaAnt eliminé las funciones transicionPaginaF y transicionPaginaAntF */
 
+function transicionPagina(pagina,contador){
 
-function transicionPagina(paginaFinal){
-	
-	const cartaDerecha = carta.querySelector(".carta2");
-	mover(cartaDerecha,"X(-100%)");
-		setTimeout(()=>{
-			carta.innerHTML = paginaFinal;
-			const nuevaDerecha = carta.querySelector(".carta2");
-			ocultar(nuevaDerecha);
-			setTimeout(()=>{
-				mostrar(nuevaDerecha);
-			},100)
-		},1000);
-}
-
-function transicionPaginaF(paginaFinal){
 	const cartaDerecha = carta.querySelector(".carta2");
 	const cartaIzquierda = carta.querySelector(".carta1");
-	mover(cartaDerecha,"x(-200%)");
-	mover(cartaIzquierda,"x(-200%)");
-		setTimeout(()=>{
-			carta.innerHTML = paginaFinal;
-			const cartaDerecha = carta.querySelector(".carta2");
-			const cartaIzquierda = carta.querySelector(".carta1");
-			ocultar(cartaDerecha);
-			ocultar(cartaIzquierda);
+	if (contador != 0){
+		mover(cartaDerecha,"X(-100%)");
 			setTimeout(()=>{
-				mostrar(cartaDerecha);
-				mostrar(cartaIzquierda);
-			},100)
-		},1000);
-}
-
-function transicionPaginaAnt(paginaFinal){
-	
-	if(window.innerWidth > 800){
-		const cartaDerecha = carta.querySelector(".carta1");
-		mover(cartaDerecha,"X(100%)");
-			setTimeout(()=>{
-				carta.innerHTML = paginaFinal;
-				const nuevaDerecha = carta.querySelector(".carta1");
+				carta.innerHTML = pagina[contador];
+				const nuevaDerecha = carta.querySelector(".carta2");
 				ocultar(nuevaDerecha);
 				setTimeout(()=>{
 					mostrar(nuevaDerecha);
 				},100)
 			},1000);
-	}else{
-		const cartaInferior = carta.querySelector(".carta2");
-		mover(cartaInferior,"X(100%)");
+	} else{
+		mover(cartaDerecha,"x(-200%)");
+		mover(cartaIzquierda,"x(-200%)");
 			setTimeout(()=>{
-				carta.innerHTML = paginaFinal;
-				const nuevaInferior = carta.querySelector(".carta2");
-				ocultar(nuevaInferior);
+				carta.innerHTML = pagina[contador];
+				const cartaDerecha = carta.querySelector(".carta2");
+				const cartaIzquierda = carta.querySelector(".carta1");
+				ocultar(cartaDerecha);
+				ocultar(cartaIzquierda);
 				setTimeout(()=>{
-					mostrar(nuevaInferior);
+					mostrar(cartaDerecha);
+					mostrar(cartaIzquierda);
 				},100)
 			},1000);
 	}
 }
 
-function transicionPaginaAntF(paginaFinal){
-	const cartaDerecha = carta.querySelector(".carta2");
-	const cartaIzquierda = carta.querySelector(".carta1");
-	mover(cartaDerecha,"X(200%)");
-	mover(cartaIzquierda,"X(200%)");
-		setTimeout(()=>{
-			carta.innerHTML = paginaFinal;
-			const cartaDerecha = carta.querySelector(".carta2");
-			const cartaIzquierda = carta.querySelector(".carta1");
-			ocultar(cartaDerecha);
-			ocultar(cartaIzquierda);
+
+function transicionPaginaAnt(pagina,contador){
+	
+	const cartaDerecha = carta.querySelector(".carta1");
+	const cartaIzquierda = carta.querySelector(".carta2");
+	if(contador != pagina.length-1){
+		if(window.innerWidth > 800){
+			mover(cartaDerecha,"X(100%)");
+				setTimeout(()=>{
+					carta.innerHTML = pagina[contador];
+					const nuevaDerecha = carta.querySelector(".carta1");
+					ocultar(nuevaDerecha);
+					setTimeout(()=>{
+						mostrar(nuevaDerecha);
+					},100)
+				},1000);
+		}else{
+			mover(cartaIzquierda,"X(100%)");
+				setTimeout(()=>{
+					carta.innerHTML = pagina[contador];
+					const nuevaInferior = carta.querySelector(".carta2");
+					ocultar(nuevaInferior);
+					setTimeout(()=>{
+						mostrar(nuevaInferior);
+					},100)
+				},1000);
+		}
+	}else{
+		mover(cartaDerecha,"X(200%)");
+		mover(cartaIzquierda,"X(200%)");
 			setTimeout(()=>{
-				mostrar(cartaDerecha);
-				mostrar(cartaIzquierda);
-			},100)
-		},1000);
+				carta.innerHTML = pagina[contador];
+				const cartaDerecha = carta.querySelector(".carta2");
+				const cartaIzquierda = carta.querySelector(".carta1");
+				ocultar(cartaDerecha);
+				ocultar(cartaIzquierda);
+				setTimeout(()=>{
+					mostrar(cartaDerecha);
+					mostrar(cartaIzquierda);
+				},100)
+			},1000);
+	}
 }
 
-
-
-
+/* paso 2: Las funciones siguienteCarta y AnteriorCarta tambien se redujeron*/
 
 function siguienteCarta(){
 
 	if(carta.classList.contains("pizzas")){
 		contadorP++;
 		if (contadorP > cartas1.length-1) contadorP = 0;
-		if (contadorP == 0){
-			transicionPaginaF(cartas1[contadorP]);
-		}else transicionPagina(cartas1[contadorP]);
+		transicionPagina(cartas1,contadorP);
 	}
 	else if(carta.classList.contains("hamburguesas")){
 		contadorH++;
 		if (contadorH > cartas2.length-1) contadorH = 0;
-		if (contadorH == 0){
-			transicionPaginaF(cartas2[contadorH]);
-		}else transicionPagina(cartas2[contadorH]);
+		transicionPagina(cartas2,contadorH);
 	}
 	else if(carta.classList.contains("desayunos")){
 		contadorD++;
 		if (contadorD > cartas3.length-1) contadorD = 0;
-		if (contadorD == 0){
-			transicionPaginaF(cartas3[contadorD]);
-		}else transicionPagina(cartas3[contadorD]);
+		transicionPagina(cartas3,contadorD);
 	}
 	botonCartaS.removeEventListener("click",siguienteCarta);
 	botonCartaA.removeEventListener("click",anteriorCarta);
@@ -668,28 +659,22 @@ function siguienteCarta(){
 }
 
 function anteriorCarta(){
-
+	
 	if(carta.classList.contains("pizzas")){
 		contadorP--;
 		if (contadorP < 0 ) contadorP = cartas1.length-1;
-		if (contadorP == cartas1.length-1){
-			transicionPaginaAntF(cartas1[contadorP]);
-		} else transicionPaginaAnt(cartas1[contadorP]);
+		transicionPaginaAnt(cartas1,contadorP);
 	}
 	else if(carta.classList.contains("hamburguesas")){
 		contadorH--;
 		if (contadorH < 0 ) contadorH = cartas2.length-1;
-		if (contadorH == cartas1.length-1){
-			transicionPaginaAntF(cartas2[contadorH]);
-		} else transicionPaginaAnt(cartas2[contadorH]);
+		transicionPaginaAnt(cartas2,contadorH);
 
 	}
 	else if(carta.classList.contains("desayunos")){
 		contadorD--;
 		if (contadorD < 0 ) contadorD = cartas3.length-1;
-		if (contadorD == cartas1.length-1){
-			transicionPaginaAntF(cartas3[contadorD]);
-		} else transicionPaginaAnt(cartas3[contadorD]);
+		transicionPaginaAnt(cartas3,contadorD);
 	}
 
 	botonCartaA.removeEventListener("click",anteriorCarta);
