@@ -360,22 +360,53 @@ const hamburguesas = items.filter(item=> item.categoria == "hamburguesa");
 const desayunos = items.filter(item=> item.categoria == "desayuno");
 
 
-/* Se usó la función map para obtener un nuevo array con el texto HTML deseado
-para cada item*/
+/* Se agregó la función crearPágina que va a tomar como parametros uno de los 3 arrays , un punto del array en el cual se
+agregará un div adicional y otro punto que será el final.
+La función aplica el método reduce que va a tener en cuenta los puntos especificados anteriormente para crear
+un string con el contenido de cada página*/
 
-const cartaCompleta = items.map((item)=>{
-	return `<div class="carta__item">
-		<h4 class="carta__subtitulo">${item.titulo}</h4>
-		<p class="carta__texto">${item.texto}</p>
-		<span class="carta__span">${item.precio}</span>
-	</div>`
-});
+function crearPagina(elemento,division,final){
 
+	const pagina = elemento.reduce((acumulado,item,posicion)=>{
 
+		if(posicion == division){
+			acumulado+= `
+			<div class="carta carta2">`
+			};
 
+		if(posicion < final){
+			return `
+			${acumulado}
+			<div class="carta__item">
+				<h4 class="carta__subtitulo">${item.titulo}</h4>
+				<p class="carta__texto">${item.texto}</p>
+				<span class="carta__span">${item.precio}</span>
+			</div>`
+		}else if(posicion == final){
+			return `
+			${acumulado}
+			<div class="carta__item">
+				<h4 class="carta__subtitulo">${item.titulo}</h4>
+				<p class="carta__texto">${item.texto}</p>
+				<span class="carta__span">${item.precio}</span>
+			</div>
+		</div>
+			`
+		}else return acumulado;
+		
 
+	},`
+		<div class = "carta carta1"`);
 
-console.log(pizzas);
+	return pagina;
+
+}
+
+/* Se probó la funcionalidad de la función recreando la primera Página */
+
+const pagina1Aasd = crearPagina(pizzas,4,7);
+
+console.log(pagina1Aasd);
 
 
 
