@@ -353,28 +353,28 @@ const items = [{
 }
 ]
 
-/* Se dividio el array en 3 usando filter */
+
 
 const pizzas = items.filter(item=> item.categoria == "pizza");
 const hamburguesas = items.filter(item=> item.categoria == "hamburguesa");
 const desayunos = items.filter(item=> item.categoria == "desayuno");
 
 
-/* Se agregó la función crearPágina que va a tomar como parametros uno de los 3 arrays , un punto del array en el cual se
-agregará un div adicional y otro punto que será el final.
-La función aplica el método reduce que va a tener en cuenta los puntos especificados anteriormente para crear
-un string con el contenido de cada página*/
-
 function crearPagina(elemento,division,final){
 
 	const pagina = elemento.reduce((acumulado,item,posicion)=>{
 
 		if(posicion == division){
-			acumulado+= `
-			<div class="carta carta2">`
-			};
-
-		if(posicion < final){
+			return `
+			${acumulado}
+		</div>
+		<div class="carta carta2">
+			<div class="carta__item">
+				<h4 class="carta__subtitulo">${item.titulo}</h4>
+				<p class="carta__texto">${item.texto}</p>
+				<span class="carta__span">${item.precio}</span>
+			</div>`
+		}else if(posicion < final){
 			return `
 			${acumulado}
 			<div class="carta__item">
@@ -394,21 +394,18 @@ function crearPagina(elemento,division,final){
 			`
 		}else return acumulado;
 		
-
 	},`
-		<div class = "carta carta1"`);
+		<div class = "carta carta1">`);
 
 	return pagina;
 
 }
 
-/* Se probó la funcionalidad de la función recreando la primera Página */
+/* Para crear las siguientes paginas tuve que usar slice por lo cual voy a modificar la función principal */
 
-const pagina1Aasd = crearPagina(pizzas,4,7);
-
-console.log(pagina1Aasd);
-
-
+const pagina1A = crearPagina(pizzas,4,7);
+const pagina1B = crearPagina(pizzas.slice(4),4,7);
+const pagina1C = crearPagina(pizzas.slice(7),4,7);
 
 
 
@@ -418,165 +415,174 @@ console.log(pagina1Aasd);
 
 
 
-const pagina1A =`<div class="carta carta1">
-				<div class="carta__item">
-					<h4 class="carta__subtitulo">Pizza N°1</h4>
-					<p class="carta__texto">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia, dolores 
-					Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fuga, eaque.</p>
-					<span class="carta__span">$100</span>
-				</div>
-				<div class="carta__item">
-					<h4 class="carta__subtitulo">Pizza N°2</h4>
-					<p class="carta__texto">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia, dolores 
-					Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fuga, eaque.</p>
-					<span class="carta__span">$100</span>
-				</div>
-				<div class="carta__item">
-					<h4 class="carta__subtitulo">Pizza N°3</h4>
-					<p class="carta__texto">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia, dolores 
-					Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fuga, eaque.</p>
-					<span class="carta__span">$100</span>
-				</div>
-				<div class="carta__item">
-					<h4 class="carta__subtitulo">Pizza N°4</h4>
-					<p class="carta__texto">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia, dolores 
-					Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fuga, eaque.</p>
-					<span class="carta__span">$100</span>
-				</div>
-			</div>
-			<div class="carta carta2" >
-				<div class="carta__item">
-					<h4 class="carta__subtitulo">Pizza N°5</h4>
-					<p class="carta__texto">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia, dolores 
-					Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fuga, eaque.</p>
-					<span class="carta__span">$100</span>
-				</div>
-				<div class="carta__item">
-					<h4 class="carta__subtitulo">Pizza N°6</h4>
-					<p class="carta__texto">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia, dolores 
-					Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fuga, eaque.</p>
-					<span class="carta__span">$100</span>
-				</div>
-				<div class="carta__item">
-					<h4 class="carta__subtitulo">Pizza N°7</h4>
-					<p class="carta__texto">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia, dolores 
-					Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fuga, eaque.</p>
-					<span class="carta__span">$100</span>
-				</div>
-				<div class="carta__item">
-					<h4 class="carta__subtitulo">Pizza N°8</h4>
-					<p class="carta__texto">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia, dolores 
-					Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fuga, eaque.</p>
-					<span class="carta__span">$100</span>
-				</div>
-			</div>`;
 
-const pagina1B = `
-	<div class="carta carta1" >
-		<div class="carta__item">
-			<h4 class="carta__subtitulo">Pizza N°5</h4>
-			<p class="carta__texto">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia, dolores 
-			Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fuga, eaque.</p>
-			<span class="carta__span">$100</span>
-		</div>
-		<div class="carta__item">
-			<h4 class="carta__subtitulo">Pizza N°6</h4>
-			<p class="carta__texto">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia, dolores 
-			Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fuga, eaque.</p>
-			<span class="carta__span">$100</span>
-		</div>
-		<div class="carta__item">
-			<h4 class="carta__subtitulo">Pizza N°7</h4>
-			<p class="carta__texto">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia, dolores 
-			Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fuga, eaque.</p>
-			<span class="carta__span">$100</span>
-		</div>
-		<div class="carta__item">
-			<h4 class="carta__subtitulo">Pizza N°8</h4>
-			<p class="carta__texto">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia, dolores 
-			Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fuga, eaque.</p>
-			<span class="carta__span">$100</span>
-		</div>
-	</div>
-	<div class="carta carta2">
-		<div class="carta__item">
-			<h4 class="carta__subtitulo">Pizza N°9</h4>
-			<p class="carta__texto">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia, dolores 
-			Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fuga, eaque.</p>
-			<span class="carta__span">$100</span>
-		</div>
-		<div class="carta__item">
-			<h4 class="carta__subtitulo">Pizza N°10</h4>
-			<p class="carta__texto">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia, dolores 
-			Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fuga, eaque.</p>
-			<span class="carta__span">$100</span>
-		</div>
-		<div class="carta__item">
-			<h4 class="carta__subtitulo">Pizza N°11</h4>
-			<p class="carta__texto">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia, dolores 
-			Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fuga, eaque.</p>
-			<span class="carta__span">$100</span>
-		</div>
-		<div class="carta__item">
-			<h4 class="carta__subtitulo">Pizza N°12</h4>
-			<p class="carta__texto">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia, dolores 
-			Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fuga, eaque.</p>
-			<span class="carta__span">$100</span>
-		</div>
-	</div>`;
 
-const pagina1C = `<div class="carta carta1">
-	<div class="carta__item">
-		<h4 class="carta__subtitulo">Pizza N°9</h4>
-		<p class="carta__texto">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia, dolores 
-		Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fuga, eaque.</p>
-		<span class="carta__span">$100</span>
-	</div>
-	<div class="carta__item">
-		<h4 class="carta__subtitulo">Pizza N°10</h4>
-		<p class="carta__texto">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia, dolores 
-		Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fuga, eaque.</p>
-		<span class="carta__span">$100</span>
-	</div>
-	<div class="carta__item">
-		<h4 class="carta__subtitulo">Pizza N°11</h4>
-		<p class="carta__texto">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia, dolores 
-		Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fuga, eaque.</p>
-		<span class="carta__span">$100</span>
-	</div>
-	<div class="carta__item">
-		<h4 class="carta__subtitulo">Pizza N°12</h4>
-		<p class="carta__texto">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia, dolores 
-		Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fuga, eaque.</p>
-		<span class="carta__span">$100</span>
-	</div>
-</div>
-<div class="carta carta2" >
-	<div class="carta__item">
-		<h4 class="carta__subtitulo">Pizza N°13</h4>
-		<p class="carta__texto">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia, dolores 
-		Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fuga, eaque.</p>
-		<span class="carta__span">$100</span>
-	</div>
-	<div class="carta__item">
-		<h4 class="carta__subtitulo">Pizza N°14</h4>
-		<p class="carta__texto">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia, dolores 
-		Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fuga, eaque.</p>
-		<span class="carta__span">$100</span>
-	</div>
-	<div class="carta__item">
-		<h4 class="carta__subtitulo">Pizza N°15</h4>
-		<p class="carta__texto">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia, dolores 
-		Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fuga, eaque.</p>
-		<span class="carta__span">$100</span>
-	</div>
-	<div class="carta__item">
-		<h4 class="carta__subtitulo">Pizza N°16</h4>
-		<p class="carta__texto">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia, dolores 
-		Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fuga, eaque.</p>
-		<span class="carta__span">$100</span>
-	</div>
-</div>`;
+
+
+
+
+
+
+
+// const pagina1A =`<div class="carta carta1">
+// 				<div class="carta__item">
+// 					<h4 class="carta__subtitulo">Pizza N°1</h4>
+// 					<p class="carta__texto">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia, dolores 
+// 					Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fuga, eaque.</p>
+// 					<span class="carta__span">$100</span>
+// 				</div>
+// 				<div class="carta__item">
+// 					<h4 class="carta__subtitulo">Pizza N°2</h4>
+// 					<p class="carta__texto">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia, dolores 
+// 					Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fuga, eaque.</p>
+// 					<span class="carta__span">$100</span>
+// 				</div>
+// 				<div class="carta__item">
+// 					<h4 class="carta__subtitulo">Pizza N°3</h4>
+// 					<p class="carta__texto">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia, dolores 
+// 					Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fuga, eaque.</p>
+// 					<span class="carta__span">$100</span>
+// 				</div>
+// 				<div class="carta__item">
+// 					<h4 class="carta__subtitulo">Pizza N°4</h4>
+// 					<p class="carta__texto">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia, dolores 
+// 					Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fuga, eaque.</p>
+// 					<span class="carta__span">$100</span>
+// 				</div>
+// 			</div>
+// 			<div class="carta carta2" >
+// 				<div class="carta__item">
+// 					<h4 class="carta__subtitulo">Pizza N°5</h4>
+// 					<p class="carta__texto">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia, dolores 
+// 					Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fuga, eaque.</p>
+// 					<span class="carta__span">$100</span>
+// 				</div>
+// 				<div class="carta__item">
+// 					<h4 class="carta__subtitulo">Pizza N°6</h4>
+// 					<p class="carta__texto">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia, dolores 
+// 					Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fuga, eaque.</p>
+// 					<span class="carta__span">$100</span>
+// 				</div>
+// 				<div class="carta__item">
+// 					<h4 class="carta__subtitulo">Pizza N°7</h4>
+// 					<p class="carta__texto">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia, dolores 
+// 					Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fuga, eaque.</p>
+// 					<span class="carta__span">$100</span>
+// 				</div>
+// 				<div class="carta__item">
+// 					<h4 class="carta__subtitulo">Pizza N°8</h4>
+// 					<p class="carta__texto">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia, dolores 
+// 					Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fuga, eaque.</p>
+// 					<span class="carta__span">$100</span>
+// 				</div>
+// 			</div>`;
+
+// const pagina1B = `
+// 	<div class="carta carta1" >
+// 		<div class="carta__item">
+// 			<h4 class="carta__subtitulo">Pizza N°5</h4>
+// 			<p class="carta__texto">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia, dolores 
+// 			Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fuga, eaque.</p>
+// 			<span class="carta__span">$100</span>
+// 		</div>
+// 		<div class="carta__item">
+// 			<h4 class="carta__subtitulo">Pizza N°6</h4>
+// 			<p class="carta__texto">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia, dolores 
+// 			Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fuga, eaque.</p>
+// 			<span class="carta__span">$100</span>
+// 		</div>
+// 		<div class="carta__item">
+// 			<h4 class="carta__subtitulo">Pizza N°7</h4>
+// 			<p class="carta__texto">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia, dolores 
+// 			Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fuga, eaque.</p>
+// 			<span class="carta__span">$100</span>
+// 		</div>
+// 		<div class="carta__item">
+// 			<h4 class="carta__subtitulo">Pizza N°8</h4>
+// 			<p class="carta__texto">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia, dolores 
+// 			Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fuga, eaque.</p>
+// 			<span class="carta__span">$100</span>
+// 		</div>
+// 	</div>
+// 	<div class="carta carta2">
+// 		<div class="carta__item">
+// 			<h4 class="carta__subtitulo">Pizza N°9</h4>
+// 			<p class="carta__texto">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia, dolores 
+// 			Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fuga, eaque.</p>
+// 			<span class="carta__span">$100</span>
+// 		</div>
+// 		<div class="carta__item">
+// 			<h4 class="carta__subtitulo">Pizza N°10</h4>
+// 			<p class="carta__texto">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia, dolores 
+// 			Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fuga, eaque.</p>
+// 			<span class="carta__span">$100</span>
+// 		</div>
+// 		<div class="carta__item">
+// 			<h4 class="carta__subtitulo">Pizza N°11</h4>
+// 			<p class="carta__texto">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia, dolores 
+// 			Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fuga, eaque.</p>
+// 			<span class="carta__span">$100</span>
+// 		</div>
+// 		<div class="carta__item">
+// 			<h4 class="carta__subtitulo">Pizza N°12</h4>
+// 			<p class="carta__texto">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia, dolores 
+// 			Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fuga, eaque.</p>
+// 			<span class="carta__span">$100</span>
+// 		</div>
+// 	</div>`;
+
+// const pagina1C = `<div class="carta carta1">
+// 	<div class="carta__item">
+// 		<h4 class="carta__subtitulo">Pizza N°9</h4>
+// 		<p class="carta__texto">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia, dolores 
+// 		Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fuga, eaque.</p>
+// 		<span class="carta__span">$100</span>
+// 	</div>
+// 	<div class="carta__item">
+// 		<h4 class="carta__subtitulo">Pizza N°10</h4>
+// 		<p class="carta__texto">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia, dolores 
+// 		Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fuga, eaque.</p>
+// 		<span class="carta__span">$100</span>
+// 	</div>
+// 	<div class="carta__item">
+// 		<h4 class="carta__subtitulo">Pizza N°11</h4>
+// 		<p class="carta__texto">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia, dolores 
+// 		Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fuga, eaque.</p>
+// 		<span class="carta__span">$100</span>
+// 	</div>
+// 	<div class="carta__item">
+// 		<h4 class="carta__subtitulo">Pizza N°12</h4>
+// 		<p class="carta__texto">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia, dolores 
+// 		Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fuga, eaque.</p>
+// 		<span class="carta__span">$100</span>
+// 	</div>
+// </div>
+// <div class="carta carta2" >
+// 	<div class="carta__item">
+// 		<h4 class="carta__subtitulo">Pizza N°13</h4>
+// 		<p class="carta__texto">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia, dolores 
+// 		Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fuga, eaque.</p>
+// 		<span class="carta__span">$100</span>
+// 	</div>
+// 	<div class="carta__item">
+// 		<h4 class="carta__subtitulo">Pizza N°14</h4>
+// 		<p class="carta__texto">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia, dolores 
+// 		Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fuga, eaque.</p>
+// 		<span class="carta__span">$100</span>
+// 	</div>
+// 	<div class="carta__item">
+// 		<h4 class="carta__subtitulo">Pizza N°15</h4>
+// 		<p class="carta__texto">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia, dolores 
+// 		Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fuga, eaque.</p>
+// 		<span class="carta__span">$100</span>
+// 	</div>
+// 	<div class="carta__item">
+// 		<h4 class="carta__subtitulo">Pizza N°16</h4>
+// 		<p class="carta__texto">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia, dolores 
+// 		Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fuga, eaque.</p>
+// 		<span class="carta__span">$100</span>
+// 	</div>
+// </div>`;
 
 
 const pagina2A =`<div class="carta carta1" >
