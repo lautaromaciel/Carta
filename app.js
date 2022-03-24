@@ -6,7 +6,7 @@ const botonesCarta = document.querySelectorAll(".carta__titulo");
 const botonCartaS = document.getElementById("cartaSiguiente");
 const botonCartaA = document.getElementById("cartaAnterior");
 
-/* Se creó un array items que contiene 48 objetos que van a distribuirse en las paginas */
+
 
 const items = [{
 	id : 1,
@@ -352,6 +352,35 @@ const items = [{
 	precio : "$10"
 }
 ]
+
+/* Se dividio el array en 3 usando filter */
+
+const pizzas = items.filter(item=> item.categoria == "pizza");
+const hamburguesas = items.filter(item=> item.categoria == "hamburguesa");
+const desayunos = items.filter(item=> item.categoria == "desayuno");
+
+
+/* Se usó la función map para obtener un nuevo array con el texto HTML deseado
+para cada item*/
+
+const cartaCompleta = items.map((item)=>{
+	return `<div class="carta__item">
+		<h4 class="carta__subtitulo">${item.titulo}</h4>
+		<p class="carta__texto">${item.texto}</p>
+		<span class="carta__span">${item.precio}</span>
+	</div>`
+});
+
+
+
+
+
+console.log(pizzas);
+
+
+
+
+
 
 
 
